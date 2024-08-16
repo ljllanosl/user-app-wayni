@@ -1,6 +1,6 @@
 const USER_API = 'https://localhost:7244/api/UserItems'
 
-export const fetchUser = async () => {
+export const getUsers = async () => {
   try {
     const res = await fetch(USER_API)
     if (!res.ok) {

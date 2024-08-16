@@ -1,19 +1,15 @@
 import { useEffect, useState } from 'react'
-import { fetchUser } from '../services/users'
+import { getUsers } from '../services/users'
 import { User } from '../types'
 
 export function useUser() {
-  const [user, setUser] = useState<User[]>()
-
-  const getUser = () => {
-    fetchUser().then(newUser => {
-      setUser(newUser)
-    })
-  }
+  const [user, setUser] = useState<User>()
 
   useEffect(() => {
-    getUser()
+    getUsers().then((newUser: User[]) => {
+      setUser(newUser[0])
+    })
   }, [])
 
-  return { user, getUser }
+  return { user }
 }
