@@ -1,7 +1,10 @@
-import { Box, Button, Container, FormControl, FormLabel, TextField, Typography } from '@mui/material'
+import { Box, Button, Container, TextField, Typography } from '@mui/material'
 import { lightBlue } from '@mui/material/colors'
+import { usePassword } from '../hooks/usePassword'
 
 export default function PasswordChangeForm() {
+  const { currentPassword, newPassword, confirmPassword, handleCurrentPassword, handleNewPassword, handleConfirmPassword } = usePassword()
+
   return (
     <Box sx={{ bgcolor: lightBlue[50], height: '100vh' }}>
       <Box sx={{ textAlign: 'center', bgcolor: 'white', py: '1rem' }}>
@@ -11,19 +14,40 @@ export default function PasswordChangeForm() {
       </Box>
       <Container maxWidth='sm' component='form' sx={{ display: 'flex', flexDirection: 'column', mt: '2rem', height: '85vh', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'inherit', flexDirection: 'inherit', gap: '2rem' }}>
-          <FormControl variant='standard' sx={{ display: 'inherit', flexDirection: 'inherit', gap: '1rem' }}>
-            <FormLabel htmlFor='current-password'>Current Password</FormLabel>
-            <TextField id='current-password' type='password' sx={{ bgcolor: 'white' }}></TextField>
-          </FormControl>
-          <FormControl variant='standard' sx={{ display: 'inherit', flexDirection: 'inherit', gap: '1rem' }}>
-            <FormLabel htmlFor='new-password'>New Password</FormLabel>
-            <TextField id='new-password' type='password' sx={{ bgcolor: 'white' }}></TextField>
-          </FormControl> 
-          <FormControl variant='standard' sx={{ display: 'inherit', flexDirection: 'inherit', gap: '1rem' }}>
-            <FormLabel htmlFor='confirm-password'>Confirm Password</FormLabel>
-            <TextField id='confirm-password' type='password' sx={{ bgcolor: 'white' }}></TextField>
-          </FormControl>
-          <Typography color='primary' sx={{textAlign: 'center', fontWeight: 'bold'}}>Forgot password?</Typography>           
+          <Box sx={{ display: 'inherit', flexDirection: 'inherit' }}>
+            <Typography variant='caption' display='block' gutterBottom>
+              Current Password
+            </Typography>
+            <TextField
+              type='password'
+              name='currentPassword'
+              value={currentPassword || ''}
+              onChange={handleCurrentPassword}
+              sx={{ bgcolor: 'white' }}
+            ></TextField>
+          </Box>
+          <Box sx={{ display: 'inherit', flexDirection: 'inherit' }}>
+            <Typography variant='caption' display='block' gutterBottom>
+              New Password
+            </Typography>
+            <TextField
+              name='newPassword'
+              value={newPassword || ''}
+              onChange={handleNewPassword}
+              sx={{ bgcolor: 'white' }}
+            ></TextField>
+          </Box>
+          <Box sx={{ display: 'inherit', flexDirection: 'inherit' }}>
+            <Typography variant='caption' display='block' gutterBottom>
+              Confirm Password
+            </Typography>
+            <TextField
+              name='confirmPassword'
+              value={confirmPassword || ''}
+              onChange={handleConfirmPassword}
+              sx={{ bgcolor: 'white' }}
+            ></TextField>
+          </Box>
         </Box>
 
         <Button variant='contained' color='primary' type='submit'>

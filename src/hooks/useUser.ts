@@ -6,10 +6,20 @@ export function useUser() {
   const [user, setUser] = useState<User>()
 
   useEffect(() => {
-    getUsers().then((newUser: User[]) => {
-      setUser(newUser[0])
-    })
+    getUser()
   }, [])
+
+  const getUser = () => {
+    getUsers().then((item: User[]) => {
+      setUser(item[0])
+    })
+  }
+
+  // const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   e.preventDefault()    
+  //   const { name, value } = e.target
+  //   setUser({ ...user, [name]: value } as User)
+  // }
 
   return { user }
 }
