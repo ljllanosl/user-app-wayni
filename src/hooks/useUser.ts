@@ -3,13 +3,17 @@ import { fetchUser } from '../services/users'
 import { User } from '../types'
 
 export function useUser() {
-  const [user, setUser] = useState<User[]>([])
+  const [user, setUser] = useState<User[]>()
 
-  useEffect(() => {
+  const getUser = () => {
     fetchUser().then(newUser => {
       setUser(newUser)
     })
+  }
+
+  useEffect(() => {
+    getUser()
   }, [])
 
-  return { user }
+  return { user, getUser }
 }

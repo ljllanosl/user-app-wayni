@@ -3,6 +3,7 @@ import { List, ListItem, ListItemText, Divider, Box, Typography, Container } fro
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { lightBlue } from '@mui/material/colors'
 import { useUser } from './hooks/useUser'
+import { Link } from 'react-router-dom'
 
 function App() {
   const { user } = useUser()
@@ -16,41 +17,41 @@ function App() {
       </Box>
       <Container maxWidth='sm' sx={{ display: 'flex', flexDirection: 'column', gap: '1rem', mt: '2rem' }}>
         <List sx={{ border: 1, borderColor: lightBlue[100], borderRadius: '16px', bgcolor: 'white' }}>
-          <ListItem>
+          <ListItem component={Link} to='/name'>
             <ListItemText primary='Name' secondary={user?.[0].name} />
             <ChevronRightIcon />
           </ListItem>
           <Divider component='li' sx={{ bgcolor: lightBlue[100] }} />
-          <ListItem>
+          <ListItem component={Link} to='/username'>
             <ListItemText primary='Username' secondary={user?.[0].username} />
             <ChevronRightIcon />
           </ListItem>
           <Divider component='li' sx={{ bgcolor: lightBlue[100] }} />
-          <ListItem>
+          <ListItem component={Link} to='/'>
             <ListItemText primary='Email' secondary={user?.[0].email} />
             <ChevronRightIcon />
           </ListItem>
           <Divider component='li' sx={{ bgcolor: lightBlue[100] }} />
-          <ListItem>
+          <ListItem component={Link} to='/'>
             <ListItemText primary='Phone number' secondary={user?.[0].phone} />
             <ChevronRightIcon />
           </ListItem>
           <Divider component='li' sx={{ bgcolor: lightBlue[100] }} />
-          <ListItem>
+          <ListItem component={Link} to='/password'>
             <ListItemText primary='Change Password' />
             <ChevronRightIcon />
           </ListItem>
         </List>
 
         <List sx={{ border: 1, borderColor: lightBlue[100], borderRadius: '16px', bgcolor: 'white' }}>
-          <ListItem>
+          <ListItem component={Link} to='/'>
             <ListItemText primary='Delete my account and data' />
             <ChevronRightIcon />
           </ListItem>
         </List>
 
         <List sx={{ border: 1, borderColor: lightBlue[100], borderRadius: '16px', bgcolor: 'white' }}>
-          <ListItem>
+          <ListItem component={Link} to='/'>
             <ListItemText primary='Notification' secondary='On' />
             <ChevronRightIcon />
           </ListItem>
