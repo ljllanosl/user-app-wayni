@@ -1,11 +1,12 @@
-import { useState } from 'react'
 import './App.css'
 import { List, ListItem, ListItemText, Divider, Box, Typography, Container } from '@mui/material'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { lightBlue } from '@mui/material/colors'
-
+import { useUser } from './hooks/useUser'
 
 function App() {
+  const { user } = useUser()
+
   return (
     <Box sx={{ bgcolor: lightBlue[50], minHeight: '100vh' }}>
       <Box sx={{ textAlign: 'center', bgcolor: 'white', py: '1rem' }}>
@@ -16,17 +17,22 @@ function App() {
       <Container maxWidth='sm' sx={{ display: 'flex', flexDirection: 'column', gap: '1rem', mt: '2rem' }}>
         <List sx={{ border: 1, borderColor: lightBlue[100], borderRadius: '16px', bgcolor: 'white' }}>
           <ListItem>
-            <ListItemText primary='Name' secondary='John Smith' />
+            <ListItemText primary='Name' secondary={user?.[0].name} />
             <ChevronRightIcon />
           </ListItem>
           <Divider component='li' sx={{ bgcolor: lightBlue[100] }} />
           <ListItem>
-            <ListItemText primary='Email' secondary='johnsmith@email.com' />
+            <ListItemText primary='Username' secondary={user?.[0].username} />
             <ChevronRightIcon />
           </ListItem>
           <Divider component='li' sx={{ bgcolor: lightBlue[100] }} />
           <ListItem>
-            <ListItemText primary='Phone number' secondary='990442696' />
+            <ListItemText primary='Email' secondary={user?.[0].email} />
+            <ChevronRightIcon />
+          </ListItem>
+          <Divider component='li' sx={{ bgcolor: lightBlue[100] }} />
+          <ListItem>
+            <ListItemText primary='Phone number' secondary={user?.[0].phone} />
             <ChevronRightIcon />
           </ListItem>
           <Divider component='li' sx={{ bgcolor: lightBlue[100] }} />
