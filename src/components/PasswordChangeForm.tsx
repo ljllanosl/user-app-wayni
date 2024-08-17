@@ -1,15 +1,14 @@
 import { Box, Button, Container, TextField, Typography } from '@mui/material'
-import { lightBlue } from '@mui/material/colors'
 import { usePassword } from '../hooks/usePassword'
 import { Link } from 'react-router-dom'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 
 export default function PasswordChangeForm() {
   const { currentPassword, newPassword, confirmPassword, handleCurrentPassword, handleNewPassword,
-    handleConfirmPassword, handlePasswordSubmit } = usePassword()
+    handleConfirmPassword, handlePasswordSubmit, errorNewPassword, errorConfirmPassword, errorCurrentPassword } = usePassword()
 
   return (
-    <Box sx={{ bgcolor: lightBlue[50], height: '100vh' }}>
+    <Box sx={{ bgcolor: '#f6fbff', height: '100vh' }}>
       <Box sx={{ textAlign: 'center', bgcolor: 'white', p: '1rem', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
         <Box component={Link} to='/'>
           <ArrowBackIcon />
@@ -25,13 +24,14 @@ export default function PasswordChangeForm() {
             <Typography variant='caption' display='block' gutterBottom>
               Current Password
             </Typography>
-            <TextField
-              required
+            <TextField              
               type='password'
               name='currentPassword'
               value={currentPassword || ''}
               onChange={handleCurrentPassword}
-              sx={{ bgcolor: 'white' }}
+              error={errorCurrentPassword ? true : false}
+              helperText={errorCurrentPassword}
+              inputProps={{ maxLength: 16 }}
             ></TextField>
           </Box>
           <Box sx={{ display: 'inherit', flexDirection: 'inherit' }}>
@@ -44,7 +44,9 @@ export default function PasswordChangeForm() {
               type='password'
               value={newPassword || ''}
               onChange={handleNewPassword}
-              sx={{ bgcolor: 'white' }}
+              error={errorNewPassword ? true : false}
+              helperText={errorNewPassword}
+              inputProps={{ maxLength: 16 }}
             ></TextField>
           </Box>
           <Box sx={{ display: 'inherit', flexDirection: 'inherit' }}>
@@ -57,7 +59,9 @@ export default function PasswordChangeForm() {
               type='password'
               value={confirmPassword || ''}
               onChange={handleConfirmPassword}
-              sx={{ bgcolor: 'white' }}
+              error={errorConfirmPassword ? true : false}
+              helperText={errorConfirmPassword}
+              inputProps={{ maxLength: 16 }}
             ></TextField>
           </Box>
         </Box>

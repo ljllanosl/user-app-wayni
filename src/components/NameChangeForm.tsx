@@ -1,5 +1,4 @@
 import { Box, Button, Container, TextField, Typography } from '@mui/material'
-import { lightBlue } from '@mui/material/colors'
 import { useName } from '../hooks/useName'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { Link } from 'react-router-dom'
@@ -9,7 +8,7 @@ export default function NameChangeForm() {
   const { firstName, lastName, handleName, handleNameSubmit, errorLastName, errorFirstName } = useName()
 
   return (
-    <Box sx={{ bgcolor: lightBlue[50], height: '100vh' }}>
+    <Box sx={{ bgcolor: '#f6fbff', height: '100vh' }}>
       <Box sx={{ textAlign: 'center', bgcolor: 'white', p: '1rem', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
         <Box component={Link} to='/'>
           <ArrowBackIcon />
@@ -32,6 +31,7 @@ export default function NameChangeForm() {
               onChange={handleName}
               error={errorFirstName ? true : false}
               helperText={errorFirstName}
+              inputProps={{ maxLength: 20 }}
             ></TextField>
           </Box>
           <Box sx={{ display: 'inherit', flexDirection: 'inherit' }}>
@@ -45,6 +45,7 @@ export default function NameChangeForm() {
               onChange={handleName}
               error={errorLastName ? true : false}
               helperText={errorLastName}
+              inputProps={{ maxLength: 20 }}
             ></TextField>
           </Box>
         </Box>

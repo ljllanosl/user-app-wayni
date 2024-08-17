@@ -1,5 +1,4 @@
 import { Box, Button, Container, TextField, Typography } from '@mui/material'
-import { lightBlue } from '@mui/material/colors'
 import { useUsername } from '../hooks/useUsername'
 import { Link } from 'react-router-dom'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
@@ -8,7 +7,7 @@ export default function UsernameChangeForm() {
   const { username, handleUsername, handleUsernameSubmit, error } = useUsername()
 
   return (
-    <Box sx={{ bgcolor: lightBlue[50], height: '100vh' }}>
+    <Box sx={{ bgcolor: '#f6fbff', height: '100vh' }}>
       <Box sx={{ textAlign: 'center', bgcolor: 'white', p: '1rem', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
         <Box component={Link} to='/'>
           <ArrowBackIcon />
@@ -31,6 +30,7 @@ export default function UsernameChangeForm() {
             onChange={handleUsername}
             error={error ? true : false}
             helperText={error}
+            inputProps={{ maxLength: 30 }}
           />
         </Box>
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getUsers } from '../services/users'
+import { fetchUser } from '../services/users'
 import { User } from '../types'
 
 export function useUser() {
@@ -10,8 +10,8 @@ export function useUser() {
   }, [])
 
   const getUser = () => {
-    getUsers().then((item: User[]) => {
-      setUser(item[0])
+    fetchUser().then((item: User) => {
+      setUser(item)
     })
   }
 

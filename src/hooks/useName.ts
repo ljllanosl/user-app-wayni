@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
-import { getUsers, editUser } from '../services/users'
+import { fetchUser, editName } from '../services/users'
 import { User } from '../types'
 import { useNavigate } from 'react-router-dom'
 
 export function useName() {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-  const [data, setData] = useState<User>()
   const [errorFirstName, setErrorFirstName] = useState('')
   const [errorLastName, setErrorLastName] = useState('')
   const navigate = useNavigate()
@@ -16,11 +15,10 @@ export function useName() {
   }, [])
 
   const getNames = () => {
-    getUsers().then((item: User[]) => {
-      const tempArray = item[0].name.split(' ')
+    fetchUser().then((item: User) => {
+      const tempArray = item.name.split(' ')
       setFirstName(tempArray[0])
       setLastName(tempArray[1])
-      setData(item[0])
     })
   }
 
@@ -30,9 +28,6 @@ export function useName() {
       setFirstName(e.target.value)
       if (e.target.value.length === 0) {
         setErrorFirstName('⚠ First name is required')
-      }
-      else if (e.target.value.length > 20) {
-        setErrorFirstName('⚠ First name must be less than 20 characters long')
       }
       else if (e.target.value.match(/[^a-zA-Z]/)) {
         setErrorFirstName('⚠ First name must contain only letters')
@@ -45,9 +40,6 @@ export function useName() {
       setLastName(e.target.value)
       if (e.target.value.length === 0) {
         setErrorLastName('⚠ Last name is required')
-      }
-      else if (e.target.value.length > 20) {
-        setErrorLastName('⚠ Last name must be less than 20 characters long')
       }
       else if (e.target.value.match(/[^a-zA-Z]/)) {
         setErrorLastName('⚠ Last name must contain only letters')
@@ -63,7 +55,7 @@ export function useName() {
     e.preventDefault()
     if (!errorFirstName && !errorLastName) {
       const fullName = `${firstName} ${lastName}`
-      editUser({ ...data, name: fullName } as User).then(() => {
+      editName(fullName).then(() => {
         console.log('Name updated!')
         navigate('/')
       })

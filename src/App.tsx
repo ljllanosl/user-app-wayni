@@ -9,7 +9,7 @@ function App() {
   const { user } = useUser()
 
   return (
-    <Box sx={{ bgcolor: lightBlue[50], minHeight: '100vh' }}>
+    <Box sx={{ bgcolor: '#f6fbff', minHeight: '100vh' }}>
       <Box sx={{ textAlign: 'center', bgcolor: 'white', py: '1rem' }}>
         <Typography variant='h5' sx={{ fontWeight: 'bold' }}>
           Profile Setting
