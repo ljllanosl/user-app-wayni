@@ -34,7 +34,7 @@ export default function UsernameChangeForm() {
           />
         </Box>
 
-        <Button variant='contained' color='primary' type='submit'>
+        <Button variant='contained' color='success' type='submit'>
           Save
         </Button>
       </Container>

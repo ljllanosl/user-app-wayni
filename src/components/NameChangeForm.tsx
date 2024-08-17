@@ -50,7 +50,7 @@ export default function NameChangeForm() {
           </Box>
         </Box>
 
-        <Button variant='contained' color='primary' type='submit'>
+        <Button variant='contained' color='success' type='submit'>
           Save
         </Button>
       </Container>

@@ -20,11 +20,12 @@ export default function PasswordChangeForm() {
       </Box>
       <Container maxWidth='sm' component='form' sx={{ display: 'flex', flexDirection: 'column', mt: '2rem', height: '85vh', justifyContent: 'space-between' }} onSubmit={handlePasswordSubmit} noValidate>
         <Box sx={{ display: 'inherit', flexDirection: 'inherit', gap: '2rem' }}>
+          {/* Current Password */}
           <Box sx={{ display: 'inherit', flexDirection: 'inherit' }}>
             <Typography variant='caption' display='block' gutterBottom>
               Current Password
             </Typography>
-            <TextField              
+            <TextField
               type='password'
               name='currentPassword'
               value={currentPassword || ''}
@@ -32,8 +33,10 @@ export default function PasswordChangeForm() {
               error={errorCurrentPassword ? true : false}
               helperText={errorCurrentPassword}
               inputProps={{ maxLength: 16 }}
+
             ></TextField>
           </Box>
+          {/* New Password */}
           <Box sx={{ display: 'inherit', flexDirection: 'inherit' }}>
             <Typography variant='caption' display='block' gutterBottom>
               New Password
@@ -49,6 +52,7 @@ export default function PasswordChangeForm() {
               inputProps={{ maxLength: 16 }}
             ></TextField>
           </Box>
+          {/* Confirm Password */}
           <Box sx={{ display: 'inherit', flexDirection: 'inherit' }}>
             <Typography variant='caption' display='block' gutterBottom>
               Confirm Password
@@ -64,12 +68,12 @@ export default function PasswordChangeForm() {
               inputProps={{ maxLength: 16 }}
             ></TextField>
           </Box>
-        </Box>
+        </Box >
 
-        <Button variant='contained' color='primary' type='submit'>
+        <Button variant='contained' color='success' type='submit'>
           Save
         </Button>
-      </Container>
-    </Box>
+      </Container >
+    </Box >
   )
 }
