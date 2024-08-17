@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 
 export default function PasswordChangeForm() {
-  const { currentPassword, newPassword, confirmPassword, handleCurrentPassword, handleNewPassword, handleConfirmPassword, handlePasswordSubmit } = usePassword()
+  const { currentPassword, newPassword, confirmPassword, handleCurrentPassword, handleNewPassword,
+    handleConfirmPassword, handlePasswordSubmit } = usePassword()
 
   return (
     <Box sx={{ bgcolor: lightBlue[50], height: '100vh' }}>
@@ -18,13 +19,14 @@ export default function PasswordChangeForm() {
         </Typography>
         <ArrowBackIcon sx={{ color: 'white' }} />
       </Box>
-      <Container maxWidth='sm' component='form' sx={{ display: 'flex', flexDirection: 'column', mt: '2rem', height: '85vh', justifyContent: 'space-between' }} onSubmit={handlePasswordSubmit}>
+      <Container maxWidth='sm' component='form' sx={{ display: 'flex', flexDirection: 'column', mt: '2rem', height: '85vh', justifyContent: 'space-between' }} onSubmit={handlePasswordSubmit} noValidate>
         <Box sx={{ display: 'inherit', flexDirection: 'inherit', gap: '2rem' }}>
           <Box sx={{ display: 'inherit', flexDirection: 'inherit' }}>
             <Typography variant='caption' display='block' gutterBottom>
               Current Password
             </Typography>
             <TextField
+              required
               type='password'
               name='currentPassword'
               value={currentPassword || ''}
@@ -37,6 +39,7 @@ export default function PasswordChangeForm() {
               New Password
             </Typography>
             <TextField
+              required
               name='newPassword'
               type='password'
               value={newPassword || ''}
@@ -49,6 +52,7 @@ export default function PasswordChangeForm() {
               Confirm Password
             </Typography>
             <TextField
+              required
               name='confirmPassword'
               type='password'
               value={confirmPassword || ''}

@@ -41,13 +41,13 @@ export function usePassword() {
     if (newPassword === confirmPassword) {
       editUser({ ...data, password: newPassword } as User).then(() => {
         console.log('Password updated!')
+        navigate('/')
       })
-      navigate('/')
     } else {
       console.log('Passwords do not match!')
     }
   }
 
-  return { currentPassword, newPassword, confirmPassword, handleCurrentPassword, handleNewPassword, handleConfirmPassword , handlePasswordSubmit}
+  return { currentPassword, newPassword, confirmPassword, handleCurrentPassword, handleNewPassword, handleConfirmPassword, handlePasswordSubmit }
 
 }

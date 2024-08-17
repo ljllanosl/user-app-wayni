@@ -7,6 +7,8 @@ export function useName() {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [data, setData] = useState<User>()
+  const [errorFirstName, setErrorFirstName] = useState('')
+  const [errorLastName, setErrorLastName] = useState('')
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -22,24 +24,53 @@ export function useName() {
     })
   }
 
-  const handleFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
-    setFirstName(e.target.value)
-  }
+    if (e.target.name === 'firstName') {
+      setFirstName(e.target.value)
+      if (e.target.value.length === 0) {
+        setErrorFirstName('⚠ First name is required')
+      }
+      else if (e.target.value.length > 20) {
+        setErrorFirstName('⚠ First name must be less than 20 characters long')
+      }
+      else if (e.target.value.match(/[^a-zA-Z]/)) {
+        setErrorFirstName('⚠ First name must contain only letters')
+      }
+      else {
+        setErrorFirstName('')
+      }
+    }
+    else {
+      setLastName(e.target.value)
+      if (e.target.value.length === 0) {
+        setErrorLastName('⚠ Last name is required')
+      }
+      else if (e.target.value.length > 20) {
+        setErrorLastName('⚠ Last name must be less than 20 characters long')
+      }
+      else if (e.target.value.match(/[^a-zA-Z]/)) {
+        setErrorLastName('⚠ Last name must contain only letters')
+      }
+      else {
+        setErrorLastName('')
+      }
+    }
 
-  const handleLastName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault()
-    setLastName(e.target.value)
   }
 
   const handleNameSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const fullName = `${firstName} ${lastName}`
-    editUser({ ...data, name: fullName } as User).then(() => {
-      console.log('Name updated!')
-    })
-    navigate('/')
+    if (!errorFirstName && !errorLastName) {
+      const fullName = `${firstName} ${lastName}`
+      editUser({ ...data, name: fullName } as User).then(() => {
+        console.log('Name updated!')
+        navigate('/')
+      })
+    }
+
+
   }
 
-  return { firstName, lastName, handleFirstName, handleLastName, handleNameSubmit }
+  return { firstName, lastName, handleName, handleNameSubmit, errorFirstName, errorLastName }
 }
