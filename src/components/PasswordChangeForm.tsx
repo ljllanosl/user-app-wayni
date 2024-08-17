@@ -3,7 +3,7 @@ import { lightBlue } from '@mui/material/colors'
 import { usePassword } from '../hooks/usePassword'
 
 export default function PasswordChangeForm() {
-  const { currentPassword, newPassword, confirmPassword, handleCurrentPassword, handleNewPassword, handleConfirmPassword } = usePassword()
+  const { currentPassword, newPassword, confirmPassword, handleCurrentPassword, handleNewPassword, handleConfirmPassword, handlePasswordSubmit } = usePassword()
 
   return (
     <Box sx={{ bgcolor: lightBlue[50], height: '100vh' }}>
@@ -12,7 +12,7 @@ export default function PasswordChangeForm() {
           Change Password
         </Typography>
       </Box>
-      <Container maxWidth='sm' component='form' sx={{ display: 'flex', flexDirection: 'column', mt: '2rem', height: '85vh', justifyContent: 'space-between' }}>
+      <Container maxWidth='sm' component='form' sx={{ display: 'flex', flexDirection: 'column', mt: '2rem', height: '85vh', justifyContent: 'space-between' }} onSubmit={handlePasswordSubmit}>
         <Box sx={{ display: 'inherit', flexDirection: 'inherit', gap: '2rem' }}>
           <Box sx={{ display: 'inherit', flexDirection: 'inherit' }}>
             <Typography variant='caption' display='block' gutterBottom>
@@ -32,6 +32,7 @@ export default function PasswordChangeForm() {
             </Typography>
             <TextField
               name='newPassword'
+              type='password'
               value={newPassword || ''}
               onChange={handleNewPassword}
               sx={{ bgcolor: 'white' }}
@@ -43,6 +44,7 @@ export default function PasswordChangeForm() {
             </Typography>
             <TextField
               name='confirmPassword'
+              type='password'
               value={confirmPassword || ''}
               onChange={handleConfirmPassword}
               sx={{ bgcolor: 'white' }}

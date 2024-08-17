@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
-import { getUsers } from '../services/users'
+import { editUser, getUsers } from '../services/users'
 import { User } from '../types'
+import { useNavigate } from 'react-router-dom'
 
 export function usePassword() {
   const [currentPassword, setCurrentPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [data, setData] = useState<User>()
+  const navigate = useNavigate()
 
   useEffect(() => {
     getPassword()
@@ -14,6 +17,7 @@ export function usePassword() {
   const getPassword = () => {
     getUsers().then((item: User[]) => {
       setCurrentPassword(item[0].password)
+      setData(item[0])
     })
   }
 
@@ -32,6 +36,18 @@ export function usePassword() {
     setConfirmPassword(e.target.value)
   }
 
-  return { currentPassword, newPassword, confirmPassword, handleCurrentPassword, handleNewPassword, handleConfirmPassword }
+  const handlePasswordSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (newPassword === confirmPassword) {
+      editUser({ ...data, password: newPassword } as User).then(() => {
+        console.log('Password updated!')
+      })
+      navigate('/')
+    } else {
+      console.log('Passwords do not match!')
+    }
+  }
+
+  return { currentPassword, newPassword, confirmPassword, handleCurrentPassword, handleNewPassword, handleConfirmPassword , handlePasswordSubmit}
 
 }
