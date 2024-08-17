@@ -17,7 +17,7 @@ Clonar el proyecto
 Ir al directorio del proyecto
 
 ```bash
-  cd user-app
+  cd user-app-wayni
 ```
 
 Instalar las dependencias
