@@ -15,11 +15,5 @@ export function useUser() {
     })
   }
 
-  // const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   e.preventDefault()    
-  //   const { name, value } = e.target
-  //   setUser({ ...user, [name]: value } as User)
-  // }
-
   return { user }
 }

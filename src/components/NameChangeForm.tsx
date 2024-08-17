@@ -3,8 +3,8 @@ import { lightBlue } from '@mui/material/colors'
 import { useName } from '../hooks/useName'
 
 export default function NameChangeForm() {
-  
-  const { firstName, lastName, handleFirstName, handleLastName } = useName()
+
+  const { firstName, lastName, handleFirstName, handleLastName, handleNameSubmit } = useName()
 
   return (
     <Box sx={{ bgcolor: lightBlue[50], height: '100vh' }}>
@@ -13,7 +13,7 @@ export default function NameChangeForm() {
           Name
         </Typography>
       </Box>
-      <Container maxWidth='sm' component='form' sx={{ display: 'flex', flexDirection: 'column', mt: '2rem', height: '85vh', justifyContent: 'space-between' }}>
+      <Container maxWidth='sm' component='form' sx={{ display: 'flex', flexDirection: 'column', mt: '2rem', height: '85vh', justifyContent: 'space-between' }} onSubmit={handleNameSubmit}>
         <Box sx={{ display: 'inherit', flexDirection: 'inherit', gap: '2rem' }}>
           <Box sx={{ display: 'inherit', flexDirection: 'inherit' }}>
             <Typography variant='caption' display='block' gutterBottom>

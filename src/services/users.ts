@@ -15,7 +15,7 @@ export const getUsers = async () => {
   }
 }
 
-export const updateUser = async (user: User) => {
+export const editUser = async (user: User) => {
   try {
     const res = await fetch(`${USER_API}/1`, {
       method: 'PUT',
@@ -27,8 +27,6 @@ export const updateUser = async (user: User) => {
     if (!res.ok) {
       throw new Error(`HTTP error! Status: ${res.status}`)
     }
-    const data = await res.json()
-    return data
   } catch (error) {
     console.error('There was an error with the fetch operation:', error)
   }
