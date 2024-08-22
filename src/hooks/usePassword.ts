@@ -50,25 +50,23 @@ export function usePassword() {
       setErrorConfirmPassword('')
     }
   }, [newPassword, confirmPassword])
-
-  const handleCurrentPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+  
+  const handlePasswordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
-    setCurrentPassword(e.target.value)
-    if (e.target.value.length === 0) {
-      setErrorCurrentPassword('⚠ Current password is required')
-    } else {
-      setErrorCurrentPassword('')
+    if (e.target.name === 'currentPassword') {
+      setCurrentPassword(e.target.value)
+      if (e.target.value.length === 0) {
+        setErrorCurrentPassword('⚠ Current password is required')
+      } else {
+        setErrorCurrentPassword('')
+      }
     }
-  }
-
-  const handleNewPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault()
-    setNewPassword(e.target.value)
-  }
-
-  const handleConfirmPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault()
-    setConfirmPassword(e.target.value)
+    else if (e.target.name === 'newPassword') {
+      setNewPassword(e.target.value)
+    }
+    else {
+      setConfirmPassword(e.target.value)
+    }
   }
 
   const handlePasswordSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -87,6 +85,6 @@ export function usePassword() {
     })
   }
 
-  return { currentPassword, newPassword, confirmPassword, handleCurrentPassword, handleNewPassword, handleConfirmPassword, handlePasswordSubmit, errorNewPassword, errorConfirmPassword, errorCurrentPassword }
+  return { currentPassword, newPassword, confirmPassword, handlePasswordSubmit, handlePasswordInput, errorNewPassword, errorConfirmPassword, errorCurrentPassword }
 
 }

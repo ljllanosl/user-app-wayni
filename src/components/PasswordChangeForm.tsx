@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 
 export default function PasswordChangeForm() {
-  const { currentPassword, newPassword, confirmPassword, handleCurrentPassword, handleNewPassword,
-    handleConfirmPassword, handlePasswordSubmit, errorNewPassword, errorConfirmPassword, errorCurrentPassword } = usePassword()
+  const { currentPassword, newPassword, confirmPassword, handlePasswordSubmit, handlePasswordInput, errorNewPassword, errorConfirmPassword, errorCurrentPassword } = usePassword()
 
   return (
     <Box sx={{ bgcolor: '#f6fbff', height: '100vh' }}>
@@ -29,7 +28,7 @@ export default function PasswordChangeForm() {
               type='password'
               name='currentPassword'
               value={currentPassword || ''}
-              onChange={handleCurrentPassword}
+              onChange={handlePasswordInput}
               error={errorCurrentPassword ? true : false}
               helperText={errorCurrentPassword}
               inputProps={{ maxLength: 16 }}
@@ -46,7 +45,7 @@ export default function PasswordChangeForm() {
               name='newPassword'
               type='password'
               value={newPassword || ''}
-              onChange={handleNewPassword}
+              onChange={handlePasswordInput}
               error={errorNewPassword ? true : false}
               helperText={errorNewPassword}
               inputProps={{ maxLength: 16 }}
@@ -62,7 +61,7 @@ export default function PasswordChangeForm() {
               name='confirmPassword'
               type='password'
               value={confirmPassword || ''}
-              onChange={handleConfirmPassword}
+              onChange={handlePasswordInput}
               error={errorConfirmPassword ? true : false}
               helperText={errorConfirmPassword}
               inputProps={{ maxLength: 16 }}
